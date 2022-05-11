@@ -1,0 +1,110 @@
+using System;
+
+public class LinkedList
+{
+    public Node head,last;
+    public class Node
+    {
+        public int data;
+        public Node next;
+        public Node(int d)
+        {
+            data = d;
+            next = null;
+        }
+        
+    }
+    
+    public void insertAtFront(int d)
+    {
+        Node n = new Node(d);
+        if(head == null)
+        {
+            head = n;
+            return;
+        }
+        
+        n.next = head;
+        head = n;
+        
+    }
+    
+    public void insertAfterNode(Node prev, int d)
+    {
+        Node n = new Node(d);
+        Node temp = head;
+        while(temp != prev)
+        {
+            temp = temp.next;
+        }
+        
+        Node next = prev.next;
+        temp.next = n;
+        n.next = next;
+        
+    }
+    
+    public void insertAtLast(int d)
+    {
+        Node n = new Node(d);
+        if(head == null)
+        {
+            head = n;
+            last =n;
+            return;
+        }
+        
+        if(last != null)
+        {
+            last.next = n;
+            last = n;
+        }
+    }
+    
+    public void insert(int d)
+    {
+        Node n = new Node(d);
+        if(head == null)
+        {
+            head = n;
+            last =n;
+            return;
+        }
+        last.next = n;
+        last = n;
+    }
+    
+    public void printList()
+    {
+         Node temp = head;
+        while(temp != null)
+        {
+            Console.Write(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+    
+    public static void Main()
+    {
+        LinkedList ll = new LinkedList();
+        ll.insert(2);
+        
+        
+        ll.printList();
+        Console.WriteLine();
+        Console.WriteLine("Insert at front:");
+       
+        ll.insertAtFront(1);
+        
+        ll.printList();
+        Console.WriteLine();
+        Console.WriteLine("Insert at Last:");
+         ll.insertAtLast(100);
+         ll.printList();
+         
+         Console.WriteLine();
+        Console.WriteLine("Insert After Node:");
+         ll.insertAfterNode(ll.head.next, 80);
+         ll.printList();
+    }
+}
