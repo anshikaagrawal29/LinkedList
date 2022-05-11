@@ -1,0 +1,76 @@
+using System;
+
+public class LinkedList
+{
+    public Node head,last;
+    public class Node
+    {
+        public int data;
+        public Node next;
+        public Node(int d)
+        {
+            data = d;
+            next = null;
+        }
+        
+    }
+    
+    public string Concate(Node root)
+    {
+        string merge = "";
+        if(root == null)
+        return string.Empty;
+        
+        Node temp = root;
+        while(temp != null)
+        {
+            merge = merge + temp.data;
+            temp = temp.next;
+        }
+        
+        return merge;
+    }
+    
+    
+    public void insert(int d)
+    {
+        Node n = new Node(d);
+        if(head == null)
+        {
+            head = n;
+            last =n;
+            return;
+        }
+        last.next = n;
+        last = n;
+    }
+    
+    public void printList()
+    {
+         Node temp = head;
+        while(temp != null)
+        {
+            Console.Write(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+    
+    public static void Main()
+    {
+        LinkedList ll = new LinkedList();
+        ll.insert(1);
+        ll.insert(0);
+        ll.insert(1);
+        
+        string finalMerge = ll.Concate(ll.head);
+        Console.WriteLine("finalMerge is: " + finalMerge);
+        Console.WriteLine();
+        if(finalMerge != " ")
+        {
+            int num = Convert.ToInt32(finalMerge, 2);
+            Console.WriteLine("finalMerge in int: " + num);
+        }
+           
+        
+    }
+}
