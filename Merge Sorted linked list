@@ -1,0 +1,116 @@
+using System;
+
+public class LinkedList
+{
+    public Node head1,head2,temp1,temp2,head,temp = null;
+    public class Node{
+         public int data;
+         public Node next;
+         public Node(int d)
+         {
+             data = d;
+             next = null;
+         }
+    }
+    
+    public void insertList1( int d)
+    {
+        Node n = new Node(d);
+        if(head1 == null)
+        {
+            head1= n;
+            temp1 = n;
+            return;
+        }
+        temp1.next = n;
+        temp1 = n;
+    }
+    
+    public void insertList2( int d)
+    {
+        Node n = new Node(d);
+        if(head2 == null)
+        {
+            head2= n;
+            temp2 = head2;
+            return;
+        }
+        temp2.next = n;
+        temp2 = n;
+    }
+    
+    public void insert( int d)
+    {
+        Node n = new Node(d);
+        if(head == null)
+        {
+            head= n;
+            temp = head;
+            return;
+        }
+        temp.next = n;
+        temp = n;
+    }
+    
+    public void merge()
+    {
+        while(head1 != null && head2 != null)
+        {
+            if(head1.data == head2.data)
+            {
+                insert(head1.data);
+                insert(head2.data);
+                head1 = head1.next;
+                head2 = head2.next;
+            }
+            else if(head1.data < head2.data)
+            {
+                insert(head1.data);
+                head1 = head1.next;
+            }
+            else if(head1.data > head2.data)
+            {
+                insert(head2.data);
+                head2 = head2.next;
+            }
+        }
+        
+        while(head1 != null)
+        {
+            insert(head1.data);
+            head1 = head1.next;
+        }
+        
+        while(head2 != null)
+        {
+            insert(head2.data);
+            head2 = head2.next;
+        }
+    }
+    
+    public void print()
+    {
+        Node t = head;
+        while(t != null)
+        {
+            Console.Write(t.data + " ");
+            t = t.next;
+        }
+    }
+    
+    public static void Main()
+    {
+        LinkedList ll = new LinkedList();
+        ll.insertList1(1);
+        ll.insertList1(2);
+        ll.insertList1(4);
+       
+        ll.insertList2(1);
+        ll.insertList2(3);
+        ll.insertList2(4);
+       
+        ll.merge();
+         ll.print();
+        
+    }
+}
