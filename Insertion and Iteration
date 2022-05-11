@@ -1,0 +1,48 @@
+using System;
+
+public class LinkedList
+{
+    public Node head,temp;
+    public class Node
+    {
+        public int data;
+        public Node next;
+        public Node(int d)
+        {
+            data = d;
+            next = null;
+        }
+        
+    }
+    
+    public void insert(int d)
+    {
+        Node n = new Node(d);
+        if(head == null)
+        {
+            head = n;
+            temp =n;
+            return;
+        }
+        
+        temp.next = n;
+        temp = n;
+    }
+    
+    public static void Main()
+    {
+        LinkedList ll = new LinkedList();
+        ll.insert(2);
+        ll.insert(12);
+        ll.insert(23);
+        ll.insert(22);
+        
+        Node temp = ll.head;
+        while(temp != null)
+        {
+            Console.Write(temp.data + " ");
+            temp = temp.next;
+        }
+        
+    }
+}
