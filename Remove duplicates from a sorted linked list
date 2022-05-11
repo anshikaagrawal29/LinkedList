@@ -1,0 +1,59 @@
+using System;
+
+public class LL
+{
+    public Node head;
+    public class Node
+    {
+        public int data;
+        public Node next;
+        public Node(int d)
+        {
+            data = d;
+            next = null;
+        }
+    }
+    
+    public void print()
+    {
+        Node temp = head;
+        while(temp != null)
+        {
+            Console.Write(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+    
+    public void removeDuplicates()
+    {
+        Node curr = head;
+        Node prev = null;
+        while(curr != null && curr.next != null)
+        {   
+            if(curr.data == curr.next.data)
+            {
+                curr.next = curr.next.next; 
+            }
+            else{
+            curr = curr.next;
+            }
+            
+        }
+    }
+    public static void Main()
+    {
+        LL l = new LL();
+        l.head = new Node(1);
+        l.head.next = new Node(1);
+        l.head.next.next = new Node(1);
+        l.head.next.next.next = new Node(3);
+         l.head.next.next.next.next = new Node(4);
+        
+         l.print();
+        l.removeDuplicates();
+        Console.WriteLine("-----------");
+        l.print();
+        
+    }
+    
+}
